@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ErrorComponent } from '../component/dialog/error/error.component';
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     key: new FormControl('')
   });
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -25,10 +27,10 @@ export class LoginComponent implements OnInit {
   login(){
     var id = this.loginData.get('id')?.value;
     var key = this.loginData.get('key')?.value;
-    if (id == "1234"){
-      console.log("登入成功")
+    if (id == "1234" && key == "1234"){
+      this.router.navigate(['home']);
     }else{
-      this.onError("帳密輸入錯誤")
+      this.onError("帳密輸入錯誤");
     }
 
   }
