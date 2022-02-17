@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { P1Component } from './home/pages/p1/p1.component';
 import { P2Component } from './home/pages/p2/p2.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuardGuard } from './services/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -13,11 +14,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuardGuard],
     children:[
       {
         path: 'p1',
